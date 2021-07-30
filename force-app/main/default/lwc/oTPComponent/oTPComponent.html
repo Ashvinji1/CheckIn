@@ -2,25 +2,25 @@
     <lightning-card  title={cardLabel} icon-name="standard:contact">
        <div class="slds-grid slds-grid_vertical">
             <template if:true={showGenerateOtpButton}>
-                <div class="slds-col slds-m-around_small">
+                <div class="slds-col slds-var-m-around_small">
                     <lightning-button label="Generate OTP" onclick={generateOTP}></lightning-button>
                 </div>
             </template>
             
             <template if:true={showFormPanel}>
                 <lightning-record-edit-form object-api-name="Check_In__c"  >
-                    <div class="slds-m-around_medium">
+                    <div class="slds-var-m-around_medium">
                         <lightning-input-field field-name='OTP__c' label="Enter OTP Here" value={otp} onchange={handleOtpChange}></lightning-input-field>
                         <lightning-input-field field-name='Purpose__c' label="Enter Purpose Here" value={purpose} onchange={handlePurposeChange}></lightning-input-field>     
                         <template if:true={isError}> 
-                            <div class="slds-m-around_medium" style="color: red;">
+                            <div class="slds-var-m-around_medium" style="color: red;">
                                 {inputError} 
                                 </div> 
                         </template>            
-                        <div class="slds-m-top_medium" style="display: flex;">
+                        <div class="slds-var-m-top_medium" style="display: flex;">
                             <lightning-button variant="brand"  name="save" label="Submit OTP" onclick={handleSuccess}></lightning-button>&nbsp;
                             <lightning-button variant="brand" name="resend" label="Regenerate OTP" onclick={generateOTP} disabled={isRegenerateOtpButtonDisabled}></lightning-button>
-                            <div class="slds-m-around_xxx-small" style="color: red;">{countDown}</div>
+                            <div class="slds-var-m-around_xxx-small" style="color: red;">{countDown}</div>
                         </div>
                     </div>
                 </lightning-record-edit-form>

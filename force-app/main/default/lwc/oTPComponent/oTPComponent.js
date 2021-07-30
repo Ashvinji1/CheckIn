@@ -106,7 +106,8 @@ export default class OTPComponent extends LightningElement {
             return null;
  
         }
-        else if(this.purpose=='' || this.purpose==null||this.purpose=='--None--'){
+        /*else if(this.purpose=='' || this.purpose==null||this.purpose=='--None--'){*/
+        else if(this.purpose=='' || this.purpose==null){
              this.isError=true;
              this.inputError = 'Please select Purpose';
              return null;

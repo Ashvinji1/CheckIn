@@ -22,8 +22,13 @@ public class SaveCheckIn {
 		ci.Email__c = con.Email;  
         try{
             insert ci;
-        } catch (Exception e) {
-            system.debug('exception-->'+e);
+        } catch (DMLException dmle) {
+            system.debug('DML exception--> '+dmle);
+            //Handle the exception here
+        }
+        catch (Exception e) {
+            system.debug('General exception--> '+e);
+            //Handle the exception here
         }
     }
     
@@ -39,9 +44,10 @@ public class SaveCheckIn {
         Check_In__c ci = [SELECT Id,OTP__c,purpose__c,Check_in_Time__c,CreatedDate 
                             FROM Check_In__c 
                             WHERE Contact__c =: contactId 
-                            ORDER BY CreatedDate desc 
-                            LIMIT 1];
+                           LIMIT 1];
         /*  
+            ORDER BY CreatedDate desc 
+                            
             Check 120 second validity at server end.
                 DateTime createdDate = ci.CreatedDate;
                 DateTime systemDate = DateTime.now();
@@ -64,6 +70,7 @@ public class SaveCheckIn {
             ci.Purpose__c = enteredPurpose;
             ci.Check_in_Time__c=systemDate;
             update ci;
+            //Database.update(ci);
             return 'true';
         }
         
